@@ -1,0 +1,37 @@
+# Задание 1
+import pandas as pd 
+df = pd.read_csv('orders.csv', sep=',', encoding='utf-8')
+df['order_date'] = pd.to_datetime(df['order_date'], errors='coerce')
+filtered_df = df[(df['total'] >= 30000) & (df['total'] < 40000) & (df['order_date'] > '2023-01-01')]
+print(filtered_df[['order_id']].head())
+
+# Задание 2
+filtered_df1 = df[(df['customer_id'] >= 68) & (df['customer_id'] <= 88) & (df['order_date'] > '2022-01-01') & (df['order_date'] < '2023-01-01')]
+print(filtered_df1[5:11][['order_id', 'total']].head(6))
+
+# Задание 3
+df1 = pd.read_csv('products.csv', sep=',', encoding='utf-8')
+filtered_df2 = df1[(df1[ 'price'] < 500) & (df1[ 'volume_ml'] == 5.0)]
+print(filtered_df2[['product_name', 'price']])
+
+# Задание 4
+df2 = pd.read_csv('shop.csv', sep=',', encoding='utf-8')
+df2['birth_date'] = pd.to_datetime(df2['birth_date'], errors='coerce')
+filtered_df3 = df2[(df2[ 'gender'] == 'F') & (df2[ 'birth_date'] < '1995-01-01')]
+print(filtered_df3[['customer_id', 'first_name','last_name','birth_date']])
+
+# Задание 5
+filtered_df4 = df[(df['total'] > 8000) & (df['customer_id'] <= 20) & (df['customer_id'] >= 10)]
+print(filtered_df4[['order_id', 'customer_id','total']])
+
+# Задание 6
+filtered_df5 = df[(df['total'] >= 10000) & (df['total'] <= 15000) & (df['order_date'] < '2024-01-01') & (df['order_date'] >= '2023-01-01')]
+print(filtered_df5[['order_id','total', 'order_date']])
+
+# Задание 7
+filtered_df6 = df2[(df2['birth_date'] >= '1990-01-01') & (df2['birth_date'] < '1991-01-01')]
+print(filtered_df6[['order_id', 'customer_id']])
+
+# Задание 8
+filtered_df6 = df2[(df2['order_date'] >= '2023-02-01') & (df2['order_date'] < '2023-03-01') & (df2['total'] > 5000)]
+print(filtered_df6[['order_id', 'total','order_date']])
